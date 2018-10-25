@@ -1,0 +1,15 @@
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  buildConfiguration: 'Release'
+  Prerelease: 'ci'
+  buildProjects: '**/src/**/*.csproj'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Build !
+  inputs:
+    command: 'build'
+    arguments: /p:Configuration=$(BuildConfiguration) # https://github.com/MicrosoftDocs/vsts-docs/issues/1976
+    projects: $(buildProjects)
